@@ -22,3 +22,7 @@ export const selectStockError = createSelector(
   selectStockState,
   (state) => state?.error
 );
+
+export const selectStockTotal = createSelector(selectStockData, (stock) =>
+  stock?.reduce((acc, curr) => acc + curr.quantity, 0)
+);

@@ -7,7 +7,10 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { cold, hot } from 'jasmine-marbles';
 import { Observable, of, throwError } from 'rxjs';
 import { StocklistService } from '../../services/stocklist.service';
-import { mockStock, mockStockResponse } from '../../test/stocklist.mock';
+import {
+  mockAggregatedStock,
+  mockStockResponse,
+} from '../../test/stocklist.mock';
 import {
   getStock,
   getStockFailure,
@@ -51,7 +54,7 @@ describe('StocklistEffects', () => {
       actions$ = hot('-a---', { a: getStock() });
 
       const expected = cold('-a---', {
-        a: getStockSuccess({ stock: mockStock }),
+        a: getStockSuccess({ stock: [...mockAggregatedStock] }),
       });
 
       expect(effects.getStock$).toBeObservable(expected);

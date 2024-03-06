@@ -1,5 +1,5 @@
 import { StocklistState } from '../../models/stocklist.models';
-import { mockStock } from '../../test/stocklist.mock';
+import { mockAggregatedStock } from '../../test/stocklist.mock';
 import {
   getStock,
   getStockFailure,
@@ -30,19 +30,19 @@ describe('StocklistReducer', () => {
   });
 
   it('should handle getStockSuccess action', () => {
-    const action = getStockSuccess({ stock: mockStock });
+    const action = getStockSuccess({ stock: [...mockAggregatedStock] });
     const state = stocklistReducer(initialState, action);
 
     expect(state).toEqual({
       stock: {
-        data: mockStock,
+        data: [...mockAggregatedStock],
         loading: false,
         error: null,
       },
     });
   });
 
-  it('should handle getStocFailure action', () => {
+  it('should handle getStokcFailure action', () => {
     const error = 'An error occurred';
     const action = getStockFailure({ error });
     const state = stocklistReducer(initialState, action);

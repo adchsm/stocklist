@@ -1,5 +1,5 @@
 import { STOCKLIST_CONSTANTS } from '../../constants/stocklist.constants';
-import { mockStock } from '../../test/stocklist.mock';
+import { mockAggregatedStock } from '../../test/stocklist.mock';
 import {
   getStock,
   getStockFailure,
@@ -17,12 +17,12 @@ describe('StocklistActions', () => {
 
   it('should create the getStockSuccess action', () => {
     const action = getStockSuccess({
-      stock: mockStock,
+      stock: [...mockAggregatedStock],
     });
 
     expect({ ...action }).toEqual({
       type: `[${STOCKLIST_CONSTANTS.STORE_KEY}] get stock success`,
-      stock: mockStock,
+      stock: [...mockAggregatedStock],
     });
   });
 
