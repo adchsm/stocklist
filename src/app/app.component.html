@@ -1,24 +1,37 @@
-@if (stock(); as stock) {
-<table>
-  <thead>
-    <tr>
-      <th>Item</th>
-      <th>Quantity</th>
-    </tr>
-  </thead>
+<div class="navbar">
+  <a [routerLink]="['/']">aptem Stock Checker</a>
+</div>
 
-  <tbody>
-    @for (s of stock; track s.item) {
-    <tr>
-      <td>{{ s.item }}</td>
-      <td>{{ s.quantity }}</td>
-    </tr>
-    } @if (stockTotal$ | async; as total) {
-    <tr>
-      <td>Total:</td>
-      <td>{{ total }}</td>
-    </tr>
-    }
-  </tbody>
-</table>
-}
+<main>
+  @if (stock(); as stock) {
+  <h1>Stocklist</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (s of stock; track s.item) {
+      <tr>
+        <td>{{ s.item }}</td>
+        <td>{{ s.quantity }}</td>
+      </tr>
+      }
+
+      <!-- Footer -->
+      @if (stockTotal$ | async; as total) {
+      <tr>
+        <td><strong>Total:</strong></td>
+        <td>
+          <strong>{{ total }}</strong>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</main>
